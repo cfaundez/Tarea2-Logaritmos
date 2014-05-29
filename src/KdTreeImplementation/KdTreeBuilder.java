@@ -18,10 +18,20 @@ public class KdTreeBuilder {
 		return null;
 		
 	}
-	public static int selectMean(ArrayList<Point2D> points, int axis){
+	public static int selectMeanX(ArrayList<Point2D> points){
+		//TODO
 		return 0;
 	}
-	public static int selectMedian(ArrayList<Point2D> points, int axis){
+	public static int selectMedianX(ArrayList<Point2D> points, int axis){
+		//TODO
+		return 0;
+	}
+	public static int selectMeanY(ArrayList<Point2D> points){
+		//TODO
+		return 0;
+	}
+	public static int selectMedianY(ArrayList<Point2D> points, int axis){
+		//TODO
 		return 0;
 	}
 

@@ -3,9 +3,11 @@ import java.awt.geom.Point2D;
 public class Node {
 	private Node right;
 	private Node left;
-	private Point2D point;
-	public Node(Point2D point){
-		this.point=point;
+	private float x;
+	private float y;
+	public Node(int x, int y){
+		this.x=x;
+		this.y=y;
 		this.right=null;
 		this.left=null;
 	}
@@ -24,13 +26,24 @@ public class Node {
 	public int height(){
 		if(this.right==null && this.left==null)
 			return 0;
-		return Math.max(right.height(), left.height());
+		return Math.max(right.height(), left.height())+1;
 	}
 	public int size(){
 		if(this.right==null && this.left==null)
 			return 1;
 		return 1+right.size()+left.size();
 	}
-	
+	public float getX(){
+		return this.x;
+	}
+	public float getY(){
+		return this.y;
+	}
+	public void setX(float x){
+		this.x=x;
+	}
+	public void setY(float y){
+		this.y=y;
+	}
 
 }
