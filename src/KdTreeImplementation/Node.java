@@ -5,7 +5,9 @@ public class Node {
 	private Node left;
 	private float x;
 	private float y;
-	public Node(int x, int y){
+	private boolean isLeaf;
+	public Node(int x, int y, boolean leaf){
+		isLeaf=leaf;
 		this.x=x;
 		this.y=y;
 		this.right=null;
@@ -26,11 +28,19 @@ public class Node {
 	public int height(){
 		if(this.right==null && this.left==null)
 			return 0;
+		else if(this.right==null)
+			return 1+left.height();
+		else if(this.left==null)
+			return 1+right.height();
 		return Math.max(right.height(), left.height())+1;
 	}
 	public int size(){
 		if(this.right==null && this.left==null)
 			return 1;
+		else if(this.right==null)
+			return 1+left.size();
+		else if(this.left==null)
+			return 1+right.size();
 		return 1+right.size()+left.size();
 	}
 	public float getX(){
@@ -44,6 +54,12 @@ public class Node {
 	}
 	public void setY(float y){
 		this.y=y;
+	}
+	public boolean isLeaf(){
+		return this.isLeaf;
+	}
+	public void setIsLeaf(boolean b){
+		this.isLeaf=b;
 	}
 
 }
