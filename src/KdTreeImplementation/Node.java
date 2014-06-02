@@ -3,8 +3,8 @@ import java.awt.geom.Point2D;
 public class Node {
 	private Node right;
 	private Node left;
-	private float x;
-	private float y;
+	private double x;
+	private double y;
 	private boolean isLeaf;
 	public Node(int x, int y, boolean leaf){
 		isLeaf=leaf;
@@ -43,10 +43,10 @@ public class Node {
 			return 1+right.size();
 		return 1+right.size()+left.size();
 	}
-	public float getX(){
+	public double getX(){
 		return this.x;
 	}
-	public float getY(){
+	public double getY(){
 		return this.y;
 	}
 	public void setX(float x){
