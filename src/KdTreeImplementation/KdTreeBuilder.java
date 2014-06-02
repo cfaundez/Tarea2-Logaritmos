@@ -2,6 +2,7 @@ package KdTreeImplementation;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.List;
 
 public class KdTreeBuilder {
 	private ArrayList<Point2D.Double> points;
@@ -12,13 +13,13 @@ public class KdTreeBuilder {
 		this.points=points;
 		this.splitAxis=this.X;
 	}
-	public INode startToBuildWithMean(){
+	public Node startToBuildWithMean(){
 		return this.buildWithMean(points);
 	}
-	public INode startToBuildWithMedian(){
+	public Node startToBuildWithMedian(){
 		return this.buildWithMedian(points);
 	}
-	public INode buildWithMean(ArrayList<Point2D.Double> thePoints){
+	public Node buildWithMean(ArrayList<Point2D.Double> thePoints){
 		//caso base, se recibe 1 punto
 		if(thePoints.size()==1){
 			Point2D.Double thePoint=thePoints.get(0);
@@ -42,7 +43,7 @@ public class KdTreeBuilder {
 			//cambiar de eje
 			this.switchAxis();
 			//el nodo creado tiene el valor mean en la coordenada indicada por splitAxis
-			INode ret=new Node(mean, 0, false);
+			Node ret=new Node(mean, 0, false);
 			//llamada recursiva: left son los menores a la raiz y right los mayores
 			ret.setLeft(this.buildWithMean(lessThanMean));
 			ret.setRight(this.buildWithMean(moreThanMean));
@@ -57,14 +58,15 @@ public class KdTreeBuilder {
 				else
 					moreThanMean.add(p);
 			this.switchAxis();
-			INode ret=new Node(0, mean, false);
+			Node ret=new Node(0, mean, false);
 			ret.setLeft(this.buildWithMean(lessThanMean));
 			ret.setRight(this.buildWithMean(moreThanMean));
 			return ret;
 		}
-		
+
+
 	}
-	public INode buildWithMedian(ArrayList<Point2D.Double> thePoints){
+	public Node buildWithMedian(ArrayList<Point2D.Double> thePoints){
 		// Analogo a buildWithMean
 		if(thePoints.size()==1){
 			Point2D.Double thePoint=thePoints.get(0);
@@ -81,7 +83,7 @@ public class KdTreeBuilder {
 				else
 					moreThanMedian.add(p);
 			this.switchAxis();
-			INode ret=new Node(median, 0, false);
+			Node ret=new Node(median, 0, false);
 			ret.setLeft(this.buildWithMean(lessThanMedian));
 			ret.setRight(this.buildWithMean(moreThanMedian));
 			return ret;
@@ -94,11 +96,12 @@ public class KdTreeBuilder {
 				else
 					moreThanMedian.add(p);
 			this.switchAxis();
-			INode ret=new Node(0, median, false);
+			Node ret=new Node(0, median, false);
 			ret.setLeft(this.buildWithMean(lessThanMedian));
 			ret.setRight(this.buildWithMean(moreThanMedian));
 			return ret;
 		}
+
 	}
 	/**selecciona el valor promedio entre la minima y la maxima coordenada x en el conjunto  
 	 * de puntos points
@@ -106,40 +109,47 @@ public class KdTreeBuilder {
 	 * @return mean X
 	 */
 
-	public static double selectMeanX(ArrayList<Point2D.Double> mean){
-		int s=mean.size();
-		//notar que si el tamaño es impar, se deja afuera al ultimo elemento
+	public static double selectMeanX(ArrayList<Point2D.Double> points){
+		int s=points.size();
+		//notar que si el tamaÃ±o es impar, se deja afuera al ultimo elemento
 		int halfSize=(int) Math.floor(s/2);
 		ArrayList<Double> possibleMaxs=new ArrayList<Double>();
 		ArrayList<Double> possibleMins=new ArrayList<Double>();
 		//compara pares de elementos consecutivos y los clasifica como
 		//posible maximo o posible minimo
 		for(int i=0;i<halfSize;i++){
-			if(mean.get(2*i).getX()<=mean.get(2*i+1).getX()){
-				possibleMaxs.add(mean.get(2*i+1).getX());
-				possibleMins.add(mean.get(2*i).getX());
+			if(points.get(2*i).getX()<=points.get(2*i+1).getX()){
+				possibleMaxs.add(points.get(2*i+1).getX());
+				possibleMins.add(points.get(2*i).getX());
 			}
 			else{
-				possibleMaxs.add(mean.get(2*i).getX());
-				possibleMins.add(mean.get(2*i+1).getX());
+				possibleMaxs.add(points.get(2*i).getX());
+				possibleMins.add(points.get(2*i+1).getX());
 			}	
 		}
 		//obtiene el maximo y el minimo de los potenciales conjuntos
 		double max=getMax(possibleMaxs);
 		double min=getMin(possibleMins);
-		//consideracion del ultimo elemento en caso de que el tamaño sea impar
+		//consideracion del ultimo elemento en caso de que el tamaÃ±o sea impar
 		if(s%2==1)
-			if(mean.get(s-1).getX()<min)
-				min=mean.get(s-1).getX();
-			else if(mean.get(s-1).getX()>max)
-				max=mean.get(s-1).getX();
+			if(points.get(s-1).getX()<min)
+				min=points.get(s-1).getX();
+			else if(points.get(s-1).getX()>max)
+				max=points.get(s-1).getX();
 		return (max+min)/2;	
 	}
-
+	//Cami: listo
 	public static double selectMedianX(ArrayList<Point2D.Double> points){
-		//TODO
-		return 0;
+		ArrayList<Double> numbers = new ArrayList<Double>();
+
+		for (Point2D.Double point : points)
+			numbers.add(point.getX());
+
+		int k=(int) Math.floor(points.size() / 2); //posicion de la mediana
+
+		return selectKth(numbers, k);
 	}
+	
 	/**
 	 * todo analogo a selectMeanX
 	 * @param points
@@ -169,11 +179,18 @@ public class KdTreeBuilder {
 				max= points.get(s-1).getY();
 		return (max+min)/2;	
 	}
-	public static double selectMedianY(ArrayList<Point2D.Double> points, int axis){
-		//TODO
-		return 0;
+	//Cami: listo
+	public static double selectMedianY(ArrayList<Point2D> points, int axis){
+		ArrayList<Double> numbers = new ArrayList<Double>();
+
+		for (Point2D point : points)
+			numbers.add(point.getY());
+
+		int k=(int) Math.floor(points.size() / 2); //posicion de la mediana
+
+		return selectKth(numbers, k);
 	}
-	
+
 	public static double getMax(ArrayList<Double> possibleMaxs) {
 		Double candidate=possibleMaxs.get(0);
 		for(Double d: possibleMaxs)
@@ -194,5 +211,66 @@ public class KdTreeBuilder {
 	public int getAxis(){
 		return this.splitAxis;
 	}
+	//Cami: listo
+		public static double selectKth(List<Double> numbers, int k) {
+			int s = numbers.size();
+			List<Double> list = new ArrayList<Double>(numbers);
+			if (s <= 5){
+				//Insertsort
+				double aux;
+				for(int i=1; i<s; i++){
+					aux = list.get(i);
+					for(int j=i; j>=0; j--){
+						if (j==0 || list.get(j-1) <= aux){
+							list.remove(i);
+							list.add(j, aux);//inserta en posicion j
+							break;
+						}
+					}
+				}
+				return list.get(k); //Return kth element
+			}
+
+			//obtengo las medianas
+			double mh; //median helper, contiene la media de un subconjunto
+			List<Double> medians = new ArrayList<Double>();
+			List<Double> aux = new ArrayList<Double>();
+			for (int i=0; i<s; i+=5){
+				if (i+5 < s){
+					aux = numbers.subList(i, i+5);
+					mh = selectKth(aux, 2);
+				}
+				else{
+					aux = numbers.subList(i, s);
+					mh = selectKth(aux, (int) Math.floor(aux.size()/2) );
+				}
+				medians.add( mh );
+			}
+
+			int mediansK = (int) Math.floor(medians.size()/2);// medians.size()/2 = piso(techo(n/5)/2)
+			double median = selectKth(medians, mediansK); //mediana de medianas
+
+			//particiono los elementos segun la mediana
+			ArrayList<Double> lesser = new ArrayList<Double>();
+			ArrayList<Double> equal = new ArrayList<Double>();
+			ArrayList<Double> greater = new ArrayList<Double>();
+			for (double number : numbers){
+				if (number < median)
+					lesser.add(number);
+				else if (number == median)
+					equal.add(number);
+				else
+					greater.add(number);
+			}
+			//paso recursivo o retorno
+			if (k< lesser.size())
+				return selectKth(lesser, k);
+			else if (k>= lesser.size() + equal.size())
+				return selectKth(greater, k-lesser.size()-equal.size());
+			else
+				return median;
+		}
+
 
 }
+

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 public class CateTest {
-	private ArrayList<Double> minmax;
+	private ArrayList<Double> minmax, selectKth;
 	private ArrayList<Point2D.Double> mean;
 	private KdTreeBuilder builder;
 	private Point2D.Double a,b,c,d,e;
@@ -89,6 +89,34 @@ public class CateTest {
 		assertEquals(0, builder.getAxis());
 		builder.switchAxis();
 		assertEquals(1, builder.getAxis());
+	}
+	@Test
+	public void selectKthTest(){
+			selectKth = new ArrayList<Double>();
+			selectKth.add((double) 10);
+			selectKth.add((double) 11);
+			selectKth.add((double) 12);
+			selectKth.add((double) 13);
+			selectKth.add((double) 14);
+			selectKth.add((double) 15);
+			selectKth.add((double) 16);
+			selectKth.add((double) 17);
+			selectKth.add((double) 1);
+			selectKth.add((double) 2);
+			selectKth.add((double) 3);
+			selectKth.add((double) 4);
+			selectKth.add((double) 5);
+			selectKth.add((double) 6);
+			selectKth.add((double) 14);
+			selectKth.add((double) 15);
+			selectKth.add((double) 16);
+			selectKth.add((double) 17);
+			selectKth.add((double) 7);
+			selectKth.add((double) 8);
+			selectKth.add((double) 9);
+			int k = (int) Math.floor(selectKth.size() / 2);
+			assertEquals(11, KdTreeBuilder.selectKth(selectKth,k),0.001);
+		
 	}
 
 }
