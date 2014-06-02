@@ -12,13 +12,13 @@ public class KdTreeBuilder {
 		this.points=points;
 		this.splitAxis=this.X;
 	}
-	public Node startToBuildWithMean(){
+	public INode startToBuildWithMean(){
 		return this.buildWithMean(points);
 	}
-	public Node startToBuildWithMedian(){
+	public INode startToBuildWithMedian(){
 		return this.buildWithMedian(points);
 	}
-	public Node buildWithMean(ArrayList<Point2D.Double> thePoints){
+	public INode buildWithMean(ArrayList<Point2D.Double> thePoints){
 		//caso base, se recibe 1 punto
 		if(thePoints.size()==1){
 			Point2D.Double thePoint=thePoints.get(0);
@@ -42,7 +42,7 @@ public class KdTreeBuilder {
 			//cambiar de eje
 			this.switchAxis();
 			//el nodo creado tiene el valor mean en la coordenada indicada por splitAxis
-			Node ret=new Node(mean, 0, false);
+			INode ret=new Node(mean, 0, false);
 			//llamada recursiva: left son los menores a la raiz y right los mayores
 			ret.setLeft(this.buildWithMean(lessThanMean));
 			ret.setRight(this.buildWithMean(moreThanMean));
@@ -57,14 +57,14 @@ public class KdTreeBuilder {
 				else
 					moreThanMean.add(p);
 			this.switchAxis();
-			Node ret=new Node(0, mean, false);
+			INode ret=new Node(0, mean, false);
 			ret.setLeft(this.buildWithMean(lessThanMean));
 			ret.setRight(this.buildWithMean(moreThanMean));
 			return ret;
 		}
 		
 	}
-	public Node buildWithMedian(ArrayList<Point2D.Double> thePoints){
+	public INode buildWithMedian(ArrayList<Point2D.Double> thePoints){
 		// Analogo a buildWithMean
 		if(thePoints.size()==1){
 			Point2D.Double thePoint=thePoints.get(0);
@@ -81,7 +81,7 @@ public class KdTreeBuilder {
 				else
 					moreThanMedian.add(p);
 			this.switchAxis();
-			Node ret=new Node(median, 0, false);
+			INode ret=new Node(median, 0, false);
 			ret.setLeft(this.buildWithMean(lessThanMedian));
 			ret.setRight(this.buildWithMean(moreThanMedian));
 			return ret;
@@ -94,7 +94,7 @@ public class KdTreeBuilder {
 				else
 					moreThanMedian.add(p);
 			this.switchAxis();
-			Node ret=new Node(0, median, false);
+			INode ret=new Node(0, median, false);
 			ret.setLeft(this.buildWithMean(lessThanMedian));
 			ret.setRight(this.buildWithMean(moreThanMedian));
 			return ret;
