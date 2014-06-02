@@ -10,12 +10,12 @@ import org.junit.Test;
 
 public class CateTest {
 	private ArrayList<Double> minmax;
-	private ArrayList<Point2D> mean;
+	private ArrayList<Point2D.Double> mean;
 	private KdTreeBuilder builder;
-	private Point2D a,b,c,d,e;
+	private Point2D.Double a,b,c,d,e;
 	Node n1,n2,n3,n4,n5;
 	@Test
-	public void NodeTests() throws NotALeafException {
+	public void nodeTests() throws NotALeafException {
 		n1=new Node(1, 1, false);
 		assertFalse(n1.isLeaf());
 		assertNull(n1.getLeft());
@@ -49,7 +49,7 @@ public class CateTest {
 	}
 	
 	@Test
-	public void BuilderAuxFunctionsTests() {
+	public void builderAuxFunctionsTests() {
 		minmax=new ArrayList<Double>();
 		minmax.add( 0.56);
 		minmax.add( 5.84);
@@ -65,9 +65,9 @@ public class CateTest {
 		assertEquals(max, builder.getMax(minmax), 0.001);
 	}
 	@Test
-	public void BuilderFunctionsTests() {
+	public void builderFunctionsTests() {
 		builder=new KdTreeBuilder(null);
-		mean=new ArrayList<Point2D>();
+		mean=new ArrayList<Point2D.Double>();
 		a=new Point2D.Double(0, 0);
 		b=new Point2D.Double(1.5, -2);
 		c=new Point2D.Double(-8.44,-16.03);
@@ -81,10 +81,14 @@ public class CateTest {
 		double meanX=(-33.8+11.93)/2;
 		double meanY=(-16.03+15.12)/2;
 		assertEquals(meanX, builder.selectMeanX(mean),0.001);
-		assertEquals(meanY, builder.selectMeanY(mean),0.001);
-		
-		
-		
+		assertEquals(meanY, builder.selectMeanY(mean),0.001);		
+	}
+	@Test
+	public void AxisTest(){
+		builder=new KdTreeBuilder(null);
+		assertEquals(0, builder.getAxis());
+		builder.switchAxis();
+		assertEquals(1, builder.getAxis());
 	}
 
 }

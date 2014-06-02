@@ -13,26 +13,36 @@ public class KdTreeBuilder {
 		this.splitAxis=this.X;
 	}
 	public Node buildWithMean(ArrayList<Point2D.Double> thePoints){
+		//caso base, se recibe 1 punto
 		if(thePoints.size()==1){
 			Point2D.Double thePoint=thePoints.get(0);
+			//este nodo estara en una hoja
 			return (new Node(thePoint.getX(), thePoint.getY(), true));
 		}
+		//si es un conjunto, se particionara en 2 de acuerdo al valor de median
 		double mean;
 		ArrayList<Point2D.Double> lessThanMean = new ArrayList<Point2D.Double>();
 		ArrayList<Point2D.Double> moreThanMean = new ArrayList<Point2D.Double>();
+		//casos segun eje
 		if(this.splitAxis==this.X){
+			//seleccionar el promedio de la menor y mayor coordenada X
 			mean=this.selectMeanX(thePoints);
+			//particionar en 2 conjuntos
 			for(Point2D.Double p: thePoints)
 				if(p.getX()<=mean)
 					lessThanMean.add(p);
 				else
 					moreThanMean.add(p);
+			//cambiar de eje
 			this.switchAxis();
+			//el nodo creado tiene el valor mean en la coordenada indicada por splitAxis
 			Node ret=new Node(mean, 0, false);
+			//llamada recursiva: left son los menores a la raiz y right los mayores
 			ret.setLeft(this.buildWithMean(lessThanMean));
 			ret.setRight(this.buildWithMean(moreThanMean));
 			return ret;
 		}
+		//analogo para el eje Y
 		else{
 			mean=this.selectMeanY(thePoints);
 			for(Point2D.Double p: thePoints)
@@ -48,10 +58,41 @@ public class KdTreeBuilder {
 		}
 		
 	}
-	public Node buildWithMedian(){
-		//TODO
-		return null;
-		
+	// Analogo a buildWithMean
+	public Node buildWithMedian(ArrayList<Point2D.Double> thePoints){
+		if(thePoints.size()==1){
+			Point2D.Double thePoint=thePoints.get(0);
+			return (new Node(thePoint.getX(), thePoint.getY(), true));
+		}
+		double median;
+		ArrayList<Point2D.Double> lessThanMedian = new ArrayList<Point2D.Double>();
+		ArrayList<Point2D.Double> moreThanMedian = new ArrayList<Point2D.Double>();
+		if(this.splitAxis==this.X){
+			median=this.selectMedianX(thePoints);
+			for(Point2D.Double p: thePoints)
+				if(p.getX()<=median)
+					lessThanMedian.add(p);
+				else
+					moreThanMedian.add(p);
+			this.switchAxis();
+			Node ret=new Node(median, 0, false);
+			ret.setLeft(this.buildWithMean(lessThanMedian));
+			ret.setRight(this.buildWithMean(moreThanMedian));
+			return ret;
+		}
+		else{
+			median=this.selectMeanY(thePoints);
+			for(Point2D.Double p: thePoints)
+				if(p.getY()<=median)
+					lessThanMedian.add(p);
+				else
+					moreThanMedian.add(p);
+			this.switchAxis();
+			Node ret=new Node(0, median, false);
+			ret.setLeft(this.buildWithMean(lessThanMedian));
+			ret.setRight(this.buildWithMean(moreThanMedian));
+			return ret;
+		}
 	}
 	/**selecciona el valor promedio entre la minima y la maxima coordenada x en el conjunto  
 	 * de puntos points
@@ -59,8 +100,8 @@ public class KdTreeBuilder {
 	 * @return mean X
 	 */
 
-	public static double selectMeanX(ArrayList<Point2D.Double> points){
-		int s=points.size();
+	public static double selectMeanX(ArrayList<Point2D.Double> mean){
+		int s=mean.size();
 		//notar que si el tamaño es impar, se deja afuera al ultimo elemento
 		int halfSize=(int) Math.floor(s/2);
 		ArrayList<Double> possibleMaxs=new ArrayList<Double>();
@@ -68,13 +109,13 @@ public class KdTreeBuilder {
 		//compara pares de elementos consecutivos y los clasifica como
 		//posible maximo o posible minimo
 		for(int i=0;i<halfSize;i++){
-			if(points.get(2*i).getX()<=points.get(2*i+1).getX()){
-				possibleMaxs.add(points.get(2*i+1).getX());
-				possibleMins.add(points.get(2*i).getX());
+			if(mean.get(2*i).getX()<=mean.get(2*i+1).getX()){
+				possibleMaxs.add(mean.get(2*i+1).getX());
+				possibleMins.add(mean.get(2*i).getX());
 			}
 			else{
-				possibleMaxs.add(points.get(2*i).getX());
-				possibleMins.add(points.get(2*i+1).getX());
+				possibleMaxs.add(mean.get(2*i).getX());
+				possibleMins.add(mean.get(2*i+1).getX());
 			}	
 		}
 		//obtiene el maximo y el minimo de los potenciales conjuntos
@@ -82,14 +123,14 @@ public class KdTreeBuilder {
 		double min=getMin(possibleMins);
 		//consideracion del ultimo elemento en caso de que el tamaño sea impar
 		if(s%2==1)
-			if(points.get(s-1).getX()<min)
-				min=points.get(s-1).getX();
-			else if(points.get(s-1).getX()>max)
-				max=points.get(s-1).getX();
+			if(mean.get(s-1).getX()<min)
+				min=mean.get(s-1).getX();
+			else if(mean.get(s-1).getX()>max)
+				max=mean.get(s-1).getX();
 		return (max+min)/2;	
 	}
 
-	public static double selectMedianX(ArrayList<Point2D> points){
+	public static double selectMedianX(ArrayList<Point2D.Double> points){
 		//TODO
 		return 0;
 	}
@@ -122,7 +163,7 @@ public class KdTreeBuilder {
 				max= points.get(s-1).getY();
 		return (max+min)/2;	
 	}
-	public static double selectMedianY(ArrayList<Point2D> points, int axis){
+	public static double selectMedianY(ArrayList<Point2D.Double> points, int axis){
 		//TODO
 		return 0;
 	}
@@ -143,6 +184,9 @@ public class KdTreeBuilder {
 	}
 	public void switchAxis(){
 		this.splitAxis=(splitAxis+1)%2;
+	}
+	public int getAxis(){
+		return this.splitAxis;
 	}
 
 }
