@@ -5,12 +5,47 @@ import java.util.ArrayList;
 
 public class KdTreeBuilder {
 	private ArrayList<Point2D.Double> points;
+	final static int X=0;
+	final static int Y=1;
+	private int splitAxis;
 	public KdTreeBuilder(ArrayList<Point2D.Double> points){
 		this.points=points;
+		this.splitAxis=this.X;
 	}
-	public Node buildWithMean(){
-		//TODO
-		return null;
+	public Node buildWithMean(ArrayList<Point2D.Double> thePoints){
+		if(thePoints.size()==1){
+			Point2D.Double thePoint=thePoints.get(0);
+			return (new Node(thePoint.getX(), thePoint.getY(), true));
+		}
+		double mean;
+		ArrayList<Point2D.Double> lessThanMean = new ArrayList<Point2D.Double>();
+		ArrayList<Point2D.Double> moreThanMean = new ArrayList<Point2D.Double>();
+		if(this.splitAxis==this.X){
+			mean=this.selectMeanX(thePoints);
+			for(Point2D.Double p: thePoints)
+				if(p.getX()<=mean)
+					lessThanMean.add(p);
+				else
+					moreThanMean.add(p);
+			this.switchAxis();
+			Node ret=new Node(mean, 0, false);
+			ret.setLeft(this.buildWithMean(lessThanMean));
+			ret.setRight(this.buildWithMean(moreThanMean));
+			return ret;
+		}
+		else{
+			mean=this.selectMeanY(thePoints);
+			for(Point2D.Double p: thePoints)
+				if(p.getY()<=mean)
+					lessThanMean.add(p);
+				else
+					moreThanMean.add(p);
+			this.switchAxis();
+			Node ret=new Node(0, mean, false);
+			ret.setLeft(this.buildWithMean(lessThanMean));
+			ret.setRight(this.buildWithMean(moreThanMean));
+			return ret;
+		}
 		
 	}
 	public Node buildWithMedian(){
@@ -24,7 +59,7 @@ public class KdTreeBuilder {
 	 * @return mean X
 	 */
 
-	public static double selectMeanX(ArrayList<Point2D> points){
+	public static double selectMeanX(ArrayList<Point2D.Double> points){
 		int s=points.size();
 		//notar que si el tamaño es impar, se deja afuera al ultimo elemento
 		int halfSize=(int) Math.floor(s/2);
@@ -63,7 +98,7 @@ public class KdTreeBuilder {
 	 * @param points
 	 * @return mean
 	 */
-	public static double selectMeanY(ArrayList<Point2D> points){
+	public static double selectMeanY(ArrayList<Point2D.Double> points){
 		int s=points.size();
 		int halfSize=(int) Math.floor(s/2);
 		ArrayList<Double> possibleMaxs=new ArrayList<Double>();
@@ -105,6 +140,9 @@ public class KdTreeBuilder {
 			if(d<candidate)
 				candidate=d;
 		return candidate.doubleValue();
+	}
+	public void switchAxis(){
+		this.splitAxis=(splitAxis+1)%2;
 	}
 
 }
