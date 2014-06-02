@@ -12,6 +12,12 @@ public class KdTreeBuilder {
 		this.points=points;
 		this.splitAxis=this.X;
 	}
+	public Node startToBuildWithMean(){
+		return this.buildWithMean(points);
+	}
+	public Node startToBuildWithMedian(){
+		return this.buildWithMedian(points);
+	}
 	public Node buildWithMean(ArrayList<Point2D.Double> thePoints){
 		//caso base, se recibe 1 punto
 		if(thePoints.size()==1){
@@ -58,8 +64,8 @@ public class KdTreeBuilder {
 		}
 		
 	}
-	// Analogo a buildWithMean
 	public Node buildWithMedian(ArrayList<Point2D.Double> thePoints){
+		// Analogo a buildWithMean
 		if(thePoints.size()==1){
 			Point2D.Double thePoint=thePoints.get(0);
 			return (new Node(thePoint.getX(), thePoint.getY(), true));
