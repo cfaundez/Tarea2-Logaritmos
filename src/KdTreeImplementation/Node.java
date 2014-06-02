@@ -6,7 +6,7 @@ public class Node {
 	private double x;
 	private double y;
 	private boolean isLeaf;
-	public Node(int x, int y, boolean leaf){
+	public Node(double x, double y, boolean leaf){
 		isLeaf=leaf;
 		this.x=x;
 		this.y=y;
@@ -19,7 +19,7 @@ public class Node {
 	public Node getRight(){
 		return this.right;
 	}
-	public void setLeft(Node right){
+	public void setLeft(Node left){
 		this.left=left;
 	}
 	public Node getLeft(){
@@ -49,10 +49,10 @@ public class Node {
 	public double getY(){
 		return this.y;
 	}
-	public void setX(float x){
+	public void setX(double x){
 		this.x=x;
 	}
-	public void setY(float y){
+	public void setY(double y){
 		this.y=y;
 	}
 	public boolean isLeaf(){
@@ -60,6 +60,13 @@ public class Node {
 	}
 	public void setIsLeaf(boolean b){
 		this.isLeaf=b;
+	}
+	public Point2D.Double getPoint() throws NotALeafException{
+		if(this.isLeaf())
+			return new Point2D.Double(this.getX(), this.getY());
+		else{
+			throw new NotALeafException();
+		}
 	}
 
 }

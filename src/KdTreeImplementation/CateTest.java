@@ -13,8 +13,39 @@ public class CateTest {
 	private ArrayList<Point2D> mean;
 	private KdTreeBuilder builder;
 	private Point2D a,b,c,d,e;
+	Node n1,n2,n3,n4,n5;
 	@Test
-	public void NodeTests() {
+	public void NodeTests() throws NotALeafException {
+		n1=new Node(1, 1, false);
+		assertFalse(n1.isLeaf());
+		assertNull(n1.getLeft());
+		assertNull(n1.getRight());
+		assertEquals(1, n1.getX(),0.001);
+		assertEquals(1, n1.getY(),0.001);
+		n2=new Node(2, 2, true);
+		n3=new Node(3,3, false);
+		n1.setLeft(n3);
+		n3.setRight(n2);
+		int h=2;
+		int s=3;
+		n2.setIsLeaf(false);
+		assertEquals(h, n1.height());
+		assertEquals(s, n1.size());
+		n4=new Node(4, 4, true);
+		n5=new Node(5, 5, true);
+		n2.setLeft(n4);
+		n2.setRight(n5);
+		int h1=4;
+		int s1=5;
+		a=new Point2D.Double(5, 5);
+		assertEquals(a.getX(),n5.getPoint().x, 0.001);
+		assertEquals(a.getY(),n5.getPoint().y, 0.001);
+	}
+	@Test(expected=NotALeafException.class)
+	public void notALeafTest() throws NotALeafException{
+		n3=new Node(3,3, false);
+		n3.getPoint();
+		
 	}
 	
 	@Test
