@@ -17,7 +17,7 @@ public class MemoryNode {
 		this.y=y;
 		this.manager=man;
 		this.pos=manager.getNewPosition();
-		//Como el archivo no puede tener posiciones negativas, un número negativo es el null
+		//Como el archivo no puede tener posiciones negativas, un numero negativo es el null
 		rightPos=-1;
 		leftPos=-1;
 	}
