@@ -13,7 +13,7 @@ public class CateTest {
 	private ArrayList<Point2D.Double> mean;
 	private KdTreeBuilder builder;
 	private Point2D.Double a,b,c,d,e;
-	INode n1,n2,n3,n4,n5;
+	Node n1,n2,n3,n4,n5;
 	@Test
 	public void nodeTests() throws NotALeafException {
 		n1=new Node(1, 1, false);

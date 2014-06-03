@@ -1,91 +1,108 @@
 package KdTreeImplementation;
 
+import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
 
-public class MemoryNode implements INode {
-	private INode right;
-	private INode left;
+public class MemoryNode {
+	private double rightPos;
+	private double leftPos;
 	private double x;
 	private double y;
 	private boolean isLeaf;
 	private double pos;
-
-	@Override
-	public void setRight(INode right) {
-		// TODO Auto-generated method stub
+	MemoryManager manager;
+	public MemoryNode(double x, double y, boolean leaf, MemoryManager man){
+		isLeaf=leaf;
+		this.x=x;
+		this.y=y;
+		this.manager=man;
+		this.pos=manager.getNewPosition();
+		rightPos=-1;
+		leftPos=-1;
+	}
+	public void setRight(double pos) {
+		this.rightPos=pos;
 		
 	}
 
-	@Override
-	public INode getRight() {
-		// TODO Auto-generated method stub
-		return null;
+ 
+	public MemoryNode getRight() {
+		return this.manager.readNode(rightPos);
 	}
 
-	@Override
-	public void setLeft(INode left) {
-		// TODO Auto-generated method stub
+
+	public void setLeft(double pos) {
+		this.leftPos=pos;
 		
 	}
 
-	@Override
-	public INode getLeft() {
-		// TODO Auto-generated method stub
-		return null;
+ 
+	public MemoryNode getLeft() {
+		return this.manager.readNode(leftPos);
 	}
 
-	@Override
+ 
 	public int height() {
-		// TODO Auto-generated method stub
-		return 0;
+		if(this.leftPos<0 && this.rightPos<0)
+			return 0;
+		else if(this.rightPos<0)
+			return 1+manager.readNode(leftPos).height();
+		else if(this.leftPos<0)
+			return 1+manager.readNode(rightPos).height();
+		return 1+manager.readNode(leftPos).height()+manager.readNode(rightPos).height();
 	}
 
-	@Override
+ 
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		if(this.leftPos<0 && this.rightPos<0)
+			return 1;
+		else if(this.rightPos<0)
+			return 1+manager.readNode(leftPos).size();
+		else if(this.leftPos<0)
+			return 1+manager.readNode(rightPos).size();
+		return 1+manager.readNode(leftPos).size()+manager.readNode(rightPos).size();
 	}
 
-	@Override
+ 
 	public double getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.x;
 	}
 
-	@Override
+ 
 	public double getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.y;
 	}
 
-	@Override
+ 
 	public void setX(double x) {
-		// TODO Auto-generated method stub
+		this.x=x;
 		
 	}
 
-	@Override
+ 
 	public void setY(double y) {
-		// TODO Auto-generated method stub
+		this.y=y;
 		
 	}
 
-	@Override
+ 
 	public boolean isLeaf() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.isLeaf;
 	}
 
-	@Override
+ 
 	public void setIsLeaf(boolean b) {
-		// TODO Auto-generated method stub
+		this.isLeaf=b;
 		
 	}
 
-	@Override
-	public Double getPoint() throws NotALeafException {
-		// TODO Auto-generated method stub
-		return null;
+ 
+	public Point2D.Double getPoint() throws NotALeafException {
+		if(this.isLeaf())
+			return new Point2D.Double(this.getX(), this.getY());
+		else{
+			throw new NotALeafException();
+		}
 	}
 
 }
