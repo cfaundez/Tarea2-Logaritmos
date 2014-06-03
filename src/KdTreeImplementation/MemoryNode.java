@@ -2,16 +2,18 @@ package KdTreeImplementation;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
+import java.io.IOException;
 
 public class MemoryNode {
-	private double rightPos;
-	private double leftPos;
+	private final int bufferSize=42;
+	private long rightPos;
+	private long leftPos;
 	private double x;
 	private double y;
-	private boolean isLeaf;
-	private double pos;
+	private char isLeaf;
+	private long pos;
 	MemoryManager manager;
-	public MemoryNode(double x, double y, boolean leaf, MemoryManager man){
+	public MemoryNode(double x, double y, char leaf, MemoryManager man) throws IOException{
 		isLeaf=leaf;
 		this.x=x;
 		this.y=y;
@@ -20,48 +22,62 @@ public class MemoryNode {
 		//Como el archivo no puede tener posiciones negativas, un numero negativo es el null
 		rightPos=-1;
 		leftPos=-1;
+		this.manager.writeBuff(this.toBuff(), this.pos);
 	}
-	public void setRight(double pos) {
+	public void setRight(long pos) throws IOException {
 		this.rightPos=pos;
+		this.manager.writeBuff(this.toBuff(), this.pos);
 		
 	}
 
  
-	public MemoryNode getRight() {
-		return this.manager.readNode(rightPos);
+	private static byte[] toBuff() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public MemoryNode getRight() throws IOException {
+		byte[]b= this.manager.readBuff(rightPos);
+		return this.getNodeFromBuff(b);
 	}
 
 
-	public void setLeft(double pos) {
+	private static MemoryNode getNodeFromBuff(byte[] b) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public void setLeft(long pos) throws IOException {
 		this.leftPos=pos;
+		this.manager.writeBuff(this.toBuff(), this.pos);
 		
 	}
 
  
-	public MemoryNode getLeft() {
-		return this.manager.readNode(leftPos);
+	public MemoryNode getLeft() throws IOException {
+		byte[]b= this.manager.readBuff(leftPos);
+		return this.getNodeFromBuff(b);
 	}
 
  
-	public int height() {
+	public int height() throws IOException {
 		if(this.leftPos<0 && this.rightPos<0)
 			return 0;
 		else if(this.rightPos<0)
-			return 1+manager.readNode(leftPos).height();
+			return 1+this.getNodeFromBuff(manager.readBuff(leftPos)).height();
 		else if(this.leftPos<0)
-			return 1+manager.readNode(rightPos).height();
-		return 1+manager.readNode(leftPos).height()+manager.readNode(rightPos).height();
+			return 1+this.getNodeFromBuff(manager.readBuff(rightPos)).height();
+		return 1+this.getNodeFromBuff(manager.readBuff(leftPos)).height()+this.getNodeFromBuff(manager.readBuff(rightPos)).height();
 	}
 
  
-	public int size() {
+	public int size() throws IOException {
 		if(this.leftPos<0 && this.rightPos<0)
 			return 1;
 		else if(this.rightPos<0)
-			return 1+manager.readNode(leftPos).size();
+			return 1+this.getNodeFromBuff(manager.readBuff(leftPos)).size();
 		else if(this.leftPos<0)
-			return 1+manager.readNode(rightPos).size();
-		return 1+manager.readNode(leftPos).size()+manager.readNode(rightPos).size();
+			return 1+this.getNodeFromBuff(manager.readBuff(rightPos)).size();
+		return 1+this.getNodeFromBuff(manager.readBuff(leftPos)).size()+this.getNodeFromBuff(manager.readBuff(rightPos)).size();
 	}
 
  
@@ -79,27 +95,25 @@ public class MemoryNode {
 		this.x=x;
 		
 	}
-
- 
 	public void setY(double y) {
 		this.y=y;
 		
 	}
 
  
-	public boolean isLeaf() {
+	public char isLeaf() {
 		return this.isLeaf;
 	}
 
  
-	public void setIsLeaf(boolean b) {
+	public void setIsLeaf(char b) {
 		this.isLeaf=b;
 		
 	}
 
  
 	public Point2D.Double getPoint() throws NotALeafException {
-		if(this.isLeaf())
+		if(this.isLeaf()==1)
 			return new Point2D.Double(this.getX(), this.getY());
 		else{
 			throw new NotALeafException();
