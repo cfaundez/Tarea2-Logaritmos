@@ -7,13 +7,14 @@ import org.apache.commons.math3.random.SobolSequenceGenerator;
 import org.apache.commons.math.exception.OutOfRangeException;
 
 public class InstanceGenerator{
-	final static private double c=0.7;
-	Random r;
-	SobolSequenceGenerator sobol;
+	final static private double c=0.4;
+	private static Random r;
+	private static SobolSequenceGenerator sobol;
 	public InstanceGenerator(){
 		r=new Random();
+		sobol=new SobolSequenceGenerator(2);
 	}
-	public ArrayList<Point2D.Double> randomInstance(int n){
+	public static ArrayList<Point2D.Double> randomInstance(int n){
 		double max=Math.sqrt(n)*c;
 		ArrayList<Point2D.Double> ret=new ArrayList<Point2D.Double>();
 		for(int i=0;i<n;i++){
@@ -24,10 +25,9 @@ public class InstanceGenerator{
 		}
 		return ret;
 	}
-	public ArrayList<Point2D.Double> lowDiscrepancyInstance(int n) throws OutOfRangeException{
+	public static ArrayList<Point2D.Double> lowDiscrepancyInstance(int n) throws OutOfRangeException{
 		double max=Math.sqrt(n)*c;
 		ArrayList<Point2D.Double> ret= new ArrayList<Point2D.Double>();
-		sobol=new SobolSequenceGenerator(2);
 		double[] array=new double[2];
 		for(int i=0;i<n;i++){
 			array=sobol.nextVector();
@@ -37,5 +37,10 @@ public class InstanceGenerator{
 			ret.add(newPoint);
 		}
 		return ret;
+	}
+	public static void main(String[] args){
+		InstanceGenerator gen=new InstanceGenerator();
+		System.out.println(gen.randomInstance(10).toString());
+		System.out.println(gen.lowDiscrepancyInstance(10).toString());
 	}
 }
