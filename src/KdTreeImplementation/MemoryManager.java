@@ -22,12 +22,14 @@ public class MemoryManager {
 		file = new RandomAccessFile(fileName, "rw");
 		buffer = new byte[bufferSize];
 		priority = new LinkedList<Long>();
+		inMemoryNodes=new HashMap<Long, byte[]>();
 		numOfElements = 0;
 		position = 0;
 	}
 	public void writeBuff(byte[] b, long pos) throws IOException{
 		if(inMemoryNodes.containsKey(pos)){
 			inMemoryNodes.put(pos, b);
+			this.improvePriority(pos);
 			return;
 		}
 		file.seek(pos);
@@ -42,6 +44,7 @@ public class MemoryManager {
 			long byeNode=priority.pollLast();
 			buffer=inMemoryNodes.get(byeNode);
 			inMemoryNodes.remove(byeNode);
+			priority.remove(byeNode);
 			this.writeBuff(buffer,byeNode);
 			numOfElements--;
 		}

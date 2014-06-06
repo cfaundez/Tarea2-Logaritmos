@@ -5,7 +5,7 @@ import java.util.Random;
 import KdTreeImplementation.*;
 
 
-public class Tests {
+public class TestsPrincipal {
 	
 	public static void main(String[] arg){
 		Random r=new Random();

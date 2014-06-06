@@ -24,7 +24,18 @@ public class MemoryNode {
 		leftPos=-1;
 		this.manager.writeBuff(this.toBuff(), this.pos);
 	}
-	//esto hay que hacerlo apenas esté creado el memory manager
+	public MemoryNode(double x, double y, char leaf, long pos) throws IOException{
+		isLeaf=leaf;
+		this.x=x;
+		this.y=y;
+		this.pos=pos;
+		//Como el archivo no puede tener posiciones negativas, un numero negativo es el null
+		rightPos=-1;
+		leftPos=-1;
+		this.manager.writeBuff(this.toBuff(), this.pos);
+	}
+	
+	//esto hay que hacerlo apenas estï¿½ creado el memory manager
 	public static void setMemoryManager(MemoryManager man){
 		manager=man;
 	}
@@ -35,11 +46,11 @@ public class MemoryNode {
 	}
 
  
-	private byte[] toBuff() {
+	public byte[] toBuff() {
 		//orden de nodo: posLeft, pos, posRight, x, y, isleaf
 		byte[] b=new byte[bufferSize];
-		ByteBuffer buff = null;
-		buff.wrap(b);
+		ByteBuffer buff = ByteBuffer.allocate(42);
+		buff=ByteBuffer.wrap(b);
 		buff.position(0);
 		buff.putLong(this.leftPos);
 		buff.putLong(this.pos);
@@ -52,10 +63,10 @@ public class MemoryNode {
 		return b;
 	}
 	
-	private static MemoryNode getNodeFromBuff(byte[] b) throws IOException {
+	public static MemoryNode getNodeFromBuff(byte[] b) throws IOException {
 		//orden de nodo: posLeft, pos, posRight, x, y, isleaf
-		ByteBuffer buff = null;
-		buff.wrap(b);
+		ByteBuffer buff = ByteBuffer.allocate(42);
+		buff=ByteBuffer.wrap(b);
 		buff.position(0);
 		long posLeft, posRight, pos;
 		double x,y;
@@ -66,9 +77,9 @@ public class MemoryNode {
 		x=buff.getDouble();
 		y=buff.getDouble();
 		isLeaf=buff.getChar();
-		MemoryNode n= new MemoryNode(x, y, isLeaf);
-		n.setLeft(posLeft);
-		n.setRight(posRight);
+		MemoryNode n= new MemoryNode(x, y, isLeaf,pos);
+		n.leftPos = posLeft;
+		n.rightPos = posRight;
 		return n;
 	}
 	
@@ -94,13 +105,13 @@ public class MemoryNode {
 
  
 	public int height() throws IOException {
-		if(this.leftPos<0 && this.rightPos<0)
+		if(this.rightPos<0&&this.leftPos<0)
 			return 0;
 		else if(this.rightPos<0)
-			return 1+this.getNodeFromBuff(manager.readBuff(leftPos)).height();
+			return (1+this.getNodeFromBuff(manager.readBuff(leftPos)).height());
 		else if(this.leftPos<0)
-			return 1+this.getNodeFromBuff(manager.readBuff(rightPos)).height();
-		return 1+this.getNodeFromBuff(manager.readBuff(leftPos)).height()+this.getNodeFromBuff(manager.readBuff(rightPos)).height();
+			return (1+this.getNodeFromBuff(manager.readBuff(rightPos)).height());
+		return (1+Math.max(this.getLeft().height(),this.getRight().height()));
 	}
 
  
@@ -135,8 +146,8 @@ public class MemoryNode {
 	}
 
  
-	public char isLeaf() {
-		return this.isLeaf;
+	public boolean isLeaf() {
+		return (this.leftPos<0 && this.rightPos<0);
 	}
 
  
@@ -144,14 +155,27 @@ public class MemoryNode {
 		this.isLeaf=b;
 		
 	}
+	public long getPos(){
+		return this.pos;
+	}
 
  
 	public Point2D.Double getPoint() throws NotALeafException {
-		if(this.isLeaf()==1)
+		if(this.isLeaf())
 			return new Point2D.Double(this.getX(), this.getY());
 		else{
 			throw new NotALeafException();
 		}
+	}
+	public boolean equals(MemoryNode n){
+		return (this.x==n.x && this.y==n.y && this.pos==n.pos && this.rightPos==n.rightPos
+				&& this.leftPos==n.leftPos && this.isLeaf==n.isLeaf);
+	}
+	public long getRightPos(){
+		return this.rightPos;
+	}
+	public long getLeftPos(){
+		return this.leftPos;
 	}
 
 }
