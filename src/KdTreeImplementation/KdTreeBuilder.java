@@ -1,7 +1,6 @@
 package KdTreeImplementation;
 
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -245,7 +244,7 @@ public class KdTreeBuilder {
 				aux = numbers.subList(i, s);
 				mh = selectKth(aux, (int) Math.floor(aux.size()/2) );
 			}
-			medians.add( mh );
+			medians.add( (mh) );
 		}
 
 		int mediansK = (int) Math.floor(medians.size()/2);// medians.size()/2 = piso(techo(n/5)/2)
@@ -367,7 +366,7 @@ public class KdTreeBuilder {
 			buscarMejor(nodo.getRight(), point, actual);
 		}
 	}
-	public void setPoints(ArrayList<Double> newPoints) {
+	public void setPoints(ArrayList<Point2D.Double> newPoints) {
 		this.points=newPoints;
 		
 	}
