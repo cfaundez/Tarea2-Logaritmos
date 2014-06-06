@@ -1,0 +1,144 @@
+KD-1, puntos aleatorios, mean, n=10, t=41251675
+KD-2, puntos aleatorios, median, n=10, t=18577318
+KD-3, puntos baja disc, mean, n=10, t=18601507
+KD-4, puntos baja disc, median, n=10, t=14618566
+KD-1, altura =13, tamaño =2047
+KD-2, altura =13, tamaño =2047
+KD-3, altura =12, tamaño =2047
+KD-4, altura =12, tamaño =2047
+KD-1, punto buscado=Point2D.Double[0.2075418335671254, 0.2985980465447298], pto encontrado=Point2D.Double[0.2023958227054417, 0.3064905530214558], tiempo=782380
+KD-2, punto buscado=Point2D.Double[0.2075418335671254, 0.2985980465447298], pto encontrado=Point2D.Double[0.2023958227054417, 0.3064905530214558], tiempo=28250
+KD-3, punto buscado=Point2D.Double[0.2075418335671254, 0.2985980465447298], pto encontrado=Point2D.Double[0.216796875, 0.287109375], tiempo=25944
+KD-4, punto buscado=Point2D.Double[0.2075418335671254, 0.2985980465447298], pto encontrado=Point2D.Double[0.216796875, 0.287109375], tiempo=31742
+
+KD-1, puntos aleatorios, mean, n=11, t=31479258
+KD-2, puntos aleatorios, median, n=11, t=44272903
+KD-3, puntos baja disc, mean, n=11, t=29421116
+KD-4, puntos baja disc, median, n=11, t=25144096
+KD-1, altura =14, tamaño =4095
+KD-2, altura =15, tamaño =4095
+KD-3, altura =12, tamaño =4095
+KD-4, altura =12, tamaño =4095
+KD-1, punto buscado=Point2D.Double[0.2559057004039838, 0.28402425830867395], pto encontrado=Point2D.Double[0.25647211300667194, 0.2761099617825071], tiempo=34252
+KD-2, punto buscado=Point2D.Double[0.2559057004039838, 0.28402425830867395], pto encontrado=Point2D.Double[0.25647211300667194, 0.2761099617825071], tiempo=34855
+KD-3, punto buscado=Point2D.Double[0.2559057004039838, 0.28402425830867395], pto encontrado=Point2D.Double[0.26025390625, 0.28955078125], tiempo=37898
+KD-4, punto buscado=Point2D.Double[0.2559057004039838, 0.28402425830867395], pto encontrado=Point2D.Double[0.26025390625, 0.28955078125], tiempo=36926
+
+KD-1, puntos aleatorios, mean, n=12, t=54616010
+KD-2, puntos aleatorios, median, n=12, t=41371630
+KD-3, puntos baja disc, mean, n=12, t=38577259
+KD-4, puntos baja disc, median, n=12, t=35741233
+KD-1, altura =16, tamaño =8191
+KD-2, altura =16, tamaño =8191
+KD-3, altura =14, tamaño =8191
+KD-4, altura =14, tamaño =8191
+KD-1, punto buscado=Point2D.Double[0.7191657454455064, 0.022867585589167492], pto encontrado=Point2D.Double[0.7163738692689877, 0.027225172349307845], tiempo=30066
+KD-2, punto buscado=Point2D.Double[0.7191657454455064, 0.022867585589167492], pto encontrado=Point2D.Double[0.7163738692689877, 0.027225172349307845], tiempo=21144
+KD-3, punto buscado=Point2D.Double[0.7191657454455064, 0.022867585589167492], pto encontrado=Point2D.Double[0.714111328125, 0.026123046875], tiempo=47268
+KD-4, punto buscado=Point2D.Double[0.7191657454455064, 0.022867585589167492], pto encontrado=Point2D.Double[0.714111328125, 0.026123046875], tiempo=44828
+
+KD-1, puntos aleatorios, mean, n=13, t=44087837
+KD-2, puntos aleatorios, median, n=13, t=12260505
+KD-3, puntos baja disc, mean, n=13, t=7647760
+KD-4, puntos baja disc, median, n=13, t=7796139
+KD-1, altura =17, tamaño =16383
+KD-2, altura =17, tamaño =16383
+KD-3, altura =15, tamaño =16383
+KD-4, altura =15, tamaño =16383
+KD-1, punto buscado=Point2D.Double[0.07101361447580157, 0.9621637973850926], pto encontrado=Point2D.Double[0.08321848760110728, 0.9560544150058992], tiempo=24748
+KD-2, punto buscado=Point2D.Double[0.07101361447580157, 0.9621637973850926], pto encontrado=Point2D.Double[0.08321848760110728, 0.9560544150058992], tiempo=27677
+KD-3, punto buscado=Point2D.Double[0.07101361447580157, 0.9621637973850926], pto encontrado=Point2D.Double[0.07183837890625, 0.96356201171875], tiempo=19212
+KD-4, punto buscado=Point2D.Double[0.07101361447580157, 0.9621637973850926], pto encontrado=Point2D.Double[0.07183837890625, 0.96356201171875], tiempo=25485
+
+KD-1, puntos aleatorios, mean, n=14, t=29250824
+KD-2, puntos aleatorios, median, n=14, t=18742705
+KD-3, puntos baja disc, mean, n=14, t=24100153
+KD-4, puntos baja disc, median, n=14, t=15922272
+KD-1, altura =18, tamaño =32767
+KD-2, altura =18, tamaño =32767
+KD-3, altura =16, tamaño =32767
+KD-4, altura =16, tamaño =32767
+KD-1, punto buscado=Point2D.Double[0.20999212465314368, 1.2452715379586183], pto encontrado=Point2D.Double[0.20897828467608168, 1.254371435294515], tiempo=29187
+KD-2, punto buscado=Point2D.Double[0.20999212465314368, 1.2452715379586183], pto encontrado=Point2D.Double[0.20897828467608168, 1.254371435294515], tiempo=26992
+KD-3, punto buscado=Point2D.Double[0.20999212465314368, 1.2452715379586183], pto encontrado=Point2D.Double[0.199981689453125, 0.999908447265625], tiempo=20791
+KD-4, punto buscado=Point2D.Double[0.20999212465314368, 1.2452715379586183], pto encontrado=Point2D.Double[0.199981689453125, 0.999908447265625], tiempo=22359
+
+KD-1, puntos aleatorios, mean, n=15, t=61178063
+KD-2, puntos aleatorios, median, n=15, t=39995859
+KD-3, puntos baja disc, mean, n=15, t=50137607
+KD-4, puntos baja disc, median, n=15, t=39042704
+KD-1, altura =19, tamaño =65535
+KD-2, altura =19, tamaño =65535
+KD-3, altura =17, tamaño =65535
+KD-4, altura =17, tamaño =65535
+KD-1, punto buscado=Point2D.Double[0.8011333194192184, 1.0889690316107499], pto encontrado=Point2D.Double[0.7996234850597431, 1.0883783510015168], tiempo=45009
+KD-2, punto buscado=Point2D.Double[0.8011333194192184, 1.0889690316107499], pto encontrado=Point2D.Double[0.7996234850597431, 1.0883783510015168], tiempo=34551
+KD-3, punto buscado=Point2D.Double[0.8011333194192184, 1.0889690316107499], pto encontrado=Point2D.Double[0.8000030517578125, 0.9999237060546875], tiempo=95645
+KD-4, punto buscado=Point2D.Double[0.8011333194192184, 1.0889690316107499], pto encontrado=Point2D.Double[0.8000030517578125, 0.9999237060546875], tiempo=20709
+
+KD-1, puntos aleatorios, mean, n=16, t=131646067
+KD-2, puntos aleatorios, median, n=16, t=85444683
+KD-3, puntos baja disc, mean, n=16, t=99866841
+KD-4, puntos baja disc, median, n=16, t=78074538
+KD-1, altura =20, tamaño =131071
+KD-2, altura =21, tamaño =131071
+KD-3, altura =18, tamaño =131071
+KD-4, altura =18, tamaño =131071
+KD-1, punto buscado=Point2D.Double[0.7589750367767409, 0.7698234062124947], pto encontrado=Point2D.Double[0.7610883794969189, 0.7668466115685917], tiempo=32710
+KD-2, punto buscado=Point2D.Double[0.7589750367767409, 0.7698234062124947], pto encontrado=Point2D.Double[0.7610883794969189, 0.7668466115685917], tiempo=30511
+KD-3, punto buscado=Point2D.Double[0.7589750367767409, 0.7698234062124947], pto encontrado=Point2D.Double[0.7570419311523438, 0.7694625854492188], tiempo=38321
+KD-4, punto buscado=Point2D.Double[0.7589750367767409, 0.7698234062124947], pto encontrado=Point2D.Double[0.7570419311523438, 0.7694625854492188], tiempo=36004
+
+KD-1, puntos aleatorios, mean, n=17, t=231055518
+KD-2, puntos aleatorios, median, n=17, t=386247746
+KD-3, puntos baja disc, mean, n=17, t=204450067
+KD-4, puntos baja disc, median, n=17, t=357500711
+KD-1, altura =22, tamaño =262143
+KD-2, altura =21, tamaño =262143
+KD-3, altura =19, tamaño =262143
+KD-4, altura =19, tamaño =262143
+KD-1, punto buscado=Point2D.Double[0.5968200727243556, 0.858440058340567], pto encontrado=Point2D.Double[0.5943358629441988, 0.8579719159126682], tiempo=24422
+KD-2, punto buscado=Point2D.Double[0.5968200727243556, 0.858440058340567], pto encontrado=Point2D.Double[0.5943358629441988, 0.8579719159126682], tiempo=17089
+KD-3, punto buscado=Point2D.Double[0.5968200727243556, 0.858440058340567], pto encontrado=Point2D.Double[0.5965156555175781, 0.8589439392089844], tiempo=23001
+KD-4, punto buscado=Point2D.Double[0.5968200727243556, 0.858440058340567], pto encontrado=Point2D.Double[0.5965156555175781, 0.8589439392089844], tiempo=35658
+
+KD-1, puntos aleatorios, mean, n=18, t=697730315
+KD-2, puntos aleatorios, median, n=18, t=468066161
+KD-3, puntos baja disc, mean, n=18, t=767990622
+KD-4, puntos baja disc, median, n=18, t=480674630
+KD-1, altura =22, tamaño =524287
+KD-2, altura =22, tamaño =524287
+KD-3, altura =20, tamaño =524287
+KD-4, altura =20, tamaño =524287
+KD-1, punto buscado=Point2D.Double[0.29145145586064974, 1.0358832518351224], pto encontrado=Point2D.Double[0.2898289222705911, 1.038496067171518], tiempo=62318
+KD-2, punto buscado=Point2D.Double[0.29145145586064974, 1.0358832518351224], pto encontrado=Point2D.Double[0.2898289222705911, 1.038496067171518], tiempo=66171
+KD-3, punto buscado=Point2D.Double[0.29145145586064974, 1.0358832518351224], pto encontrado=Point2D.Double[0.2916851043701172, 0.9999675750732422], tiempo=45016
+KD-4, punto buscado=Point2D.Double[0.29145145586064974, 1.0358832518351224], pto encontrado=Point2D.Double[0.2916851043701172, 0.9999675750732422], tiempo=55202
+
+KD-1, puntos aleatorios, mean, n=19, t=1495284656
+KD-2, puntos aleatorios, median, n=19, t=1250625328
+KD-3, puntos baja disc, mean, n=19, t=1651421193
+KD-4, puntos baja disc, median, n=19, t=1487115025
+KD-1, altura =23, tamaño =1048575
+KD-2, altura =23, tamaño =1048575
+KD-3, altura =21, tamaño =1048575
+KD-4, altura =21, tamaño =1048575
+KD-1, punto buscado=Point2D.Double[0.6782216480177717, 1.1219015755332167], pto encontrado=Point2D.Double[0.6781861058128594, 1.1219354061961335], tiempo=35688
+KD-2, punto buscado=Point2D.Double[0.6782216480177717, 1.1219015755332167], pto encontrado=Point2D.Double[0.6781861058128594, 1.1219354061961335], tiempo=30546
+KD-3, punto buscado=Point2D.Double[0.6782216480177717, 1.1219015755332167], pto encontrado=Point2D.Double[0.6791448593139648, 0.9998254776000977], tiempo=342636
+KD-4, punto buscado=Point2D.Double[0.6782216480177717, 1.1219015755332167], pto encontrado=Point2D.Double[0.6791448593139648, 0.9998254776000977], tiempo=144521
+
+KD-1, puntos aleatorios, mean, n=20, t=3281558490
+KD-2, puntos aleatorios, median, n=20, t=3451639835
+KD-3, puntos baja disc, mean, n=20, t=3271967650
+KD-4, puntos baja disc, median, n=20, t=3494506630
+KD-1, altura =25, tamaño =2097151
+KD-2, altura =24, tamaño =2097151
+KD-3, altura =22, tamaño =2097151
+KD-4, altura =22, tamaño =2097151
+KD-1, punto buscado=Point2D.Double[0.353899747218399, 0.4084976602608416], pto encontrado=Point2D.Double[0.35393408522771563, 0.40865613097591363], tiempo=29744
+KD-2, punto buscado=Point2D.Double[0.353899747218399, 0.4084976602608416], pto encontrado=Point2D.Double[0.35393408522771563, 0.40865613097591363], tiempo=23196
+KD-3, punto buscado=Point2D.Double[0.353899747218399, 0.4084976602608416], pto encontrado=Point2D.Double[0.3536715507507324, 0.4087347984313965], tiempo=30337
+KD-4, punto buscado=Point2D.Double[0.353899747218399, 0.4084976602608416], pto encontrado=Point2D.Double[0.3536715507507324, 0.4087347984313965], tiempo=21311
+
+
