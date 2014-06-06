@@ -1,6 +1,7 @@
 package KdTreeImplementation;
 
 import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Double;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -365,6 +366,10 @@ public class KdTreeBuilder {
 		else {
 			buscarMejor(nodo.getRight(), point, actual);
 		}
+	}
+	public void setPoints(ArrayList<Double> newPoints) {
+		this.points=newPoints;
+		
 	}
 
 
