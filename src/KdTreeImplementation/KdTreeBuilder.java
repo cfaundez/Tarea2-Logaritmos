@@ -328,6 +328,22 @@ public class KdTreeBuilder {
 	void buscarMejor(Node nodo, Point2D.Double point, Actual actual){
 		double pointCoord;
 		double axis;
+		
+		if (nodo.isLeaf()){
+			double newDist;
+			try {
+				newDist = nodo.getPoint().distance(point);
+				if (newDist < actual.distActual){
+					actual.mejorActual = nodo.getPoint();
+					actual.distActual = newDist;
+				}
+			} catch (NotALeafException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
 		if(nodo.getX() != -1){ // si se compara con X
 			pointCoord = point.getX();
 			axis = nodo.getX();
