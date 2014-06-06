@@ -11,9 +11,7 @@ public class Tests {
 		Random r=new Random();
 		InstanceGenerator gen = new InstanceGenerator();
 		
-		int n = 10;
-		
-		for(n=10; n<=20; n=n+2){
+		for(int n=10; n<=20; n++){
 		
 			ArrayList<Point2D.Double> puntosAleatorios = gen.randomInstance(n);
 			ArrayList<Point2D.Double> puntosBajaDisc = gen.lowDiscrepancyInstance(n);
