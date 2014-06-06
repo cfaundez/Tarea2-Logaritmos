@@ -271,7 +271,7 @@ public class KdTreeBuilder {
 			return median;
 	}
 	
-	Point2D.Double vecinoMasCercano (Node nodo, Point2D.Double point){
+	public Point2D.Double vecinoMasCercano (Node nodo, Point2D.Double point){
 		Actual actual = new Actual();
 		iterador(nodo, point, actual);
 
