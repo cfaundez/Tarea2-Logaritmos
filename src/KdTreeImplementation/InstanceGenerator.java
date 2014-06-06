@@ -17,7 +17,8 @@ public class InstanceGenerator{
 	public static ArrayList<Point2D.Double> randomInstance(int n){
 		double max=Math.sqrt(n)*c;
 		ArrayList<Point2D.Double> ret=new ArrayList<Point2D.Double>();
-		for(int i=0;i<n;i++){
+		int m = (int) Math.pow(2,n);
+		for(int i=0;i<m;i++){
 			double x=r.nextDouble()*max;
 			double y=r.nextDouble()*max;
 			Point2D.Double newPoint=new Point2D.Double(x, y);
@@ -29,7 +30,8 @@ public class InstanceGenerator{
 		double max=Math.sqrt(n)*c;
 		ArrayList<Point2D.Double> ret= new ArrayList<Point2D.Double>();
 		double[] array=new double[2];
-		for(int i=0;i<n;i++){
+		int m = (int) Math.pow(2,n);
+		for(int i=0;i<m;i++){
 			array=sobol.nextVector();
 			double x=array[0]; //TODO
 			double y=array[1];
