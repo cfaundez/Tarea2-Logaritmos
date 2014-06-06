@@ -31,7 +31,7 @@ public class MemoryManager {
 			return;
 		}
 		file.seek(pos);
-		file.write(buffer);
+		file.write(b);
 	}
 	public byte[] readBuff(long pos) throws IOException{
 		if(inMemoryNodes.containsKey(pos)){

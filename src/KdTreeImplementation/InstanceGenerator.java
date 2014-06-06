@@ -40,7 +40,6 @@ public class InstanceGenerator{
 	}
 	public static void main(String[] args){
 		InstanceGenerator gen=new InstanceGenerator();
-		System.out.println(gen.randomInstance(10).toString());
-		System.out.println(gen.lowDiscrepancyInstance(10).toString());
+		KdTreeBuilder builder= new KdTreeBuilder(gen.randomInstance((int)Math.pow(2, 10)));
 	}
 }
