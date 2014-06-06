@@ -8,6 +8,6 @@ public class Actual {
 	
 	public Actual(){
 		this.mejorActual = null;
-		this.distActual = null;
+		this.distActual = -1;
 	}
 }

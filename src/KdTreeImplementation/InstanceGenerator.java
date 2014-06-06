@@ -4,7 +4,7 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Random;
 import org.apache.commons.math3.random.SobolSequenceGenerator;
-import org.apache.commons.math.exception.OutOfRangeException;
+import org.apache.commons.math3.exception.OutOfRangeException;
 
 public class InstanceGenerator{
 	final static private double c=0.4;
