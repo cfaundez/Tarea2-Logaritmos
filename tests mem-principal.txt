@@ -1,4 +1,4 @@
-KD-1, puntos aleatorios, mean, n=10, t=41251675
+﻿KD-1, puntos aleatorios, mean, n=10, t=41251675
 KD-2, puntos aleatorios, median, n=10, t=18577318
 KD-3, puntos baja disc, mean, n=10, t=18601507
 KD-4, puntos baja disc, median, n=10, t=14618566
